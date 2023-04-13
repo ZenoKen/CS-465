@@ -23,9 +23,8 @@ const renderTravelList = (req, res, responseBody) => {
             title: pageTitle,
             trips: responseBody,
             message
-        }
-    );
-}
+        });
+};
 
 /* GET travel list view */
 const travelList = (req, res) => {
@@ -36,16 +35,14 @@ const travelList = (req, res) => {
         json: {},
     };
     console.info('>> travelController.travelList calling ' + requestOptions.url);
-    request(
-        requestOptions,
-        (err, { statusCode }, body) => {
-            if (err) {
-                console.error(err);
-            }
-            renderTravelList(req, res, body);
+    request(requestOptions, (err, { statusCode }, body) => {
+        if (err) {
+            console.error(err);
         }
-    );
+        renderTravelList(req, res, body);
+    });
 };
+
 module.exports = {
-    travel
+    travelList
 };
